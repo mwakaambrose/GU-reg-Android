@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20sp"
+    tools:context="biz.kanamo.ambrose.gu_registration.SubmitReceipt">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/text2"
+        android:textSize="24sp"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:layout_marginBottom="10dp"
+        android:text="Submit Reciepts For Verification"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:id="@+id/reg_number"
+        android:gravity="center"
+        android:hint="Registration Number"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tuition_path"
+        android:gravity="center"
+        android:text="No Tuition Receipt chosen"/>
+
+    <Button
+        android:id="@+id/tuition"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Choose Tuition Receipt Picture"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/general_path"
+        android:gravity="center"
+        android:text="No General Receipt chosen"/>
+
+    <Button
+        android:id="@+id/general"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Choose General Receipt Picture"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/guild_path"
+        android:gravity="center"
+        android:text="No Guild Receipt chosen"/>
+
+    <Button
+        android:id="@+id/guild"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Choose Guild Receipt Picture"/>
+
+    <Button
+        android:id="@+id/uploadReceipts"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:layout_marginTop="5dp"
+        android:background="@color/colorAccent"
+        android:text="Submit Receipts"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:text="If you have submitted receipt already, from the menu, choose register. If receipts have been accepted, you will be given the registration form."/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:text="2107, Gulu University student Project"/>
+
+</LinearLayout>
