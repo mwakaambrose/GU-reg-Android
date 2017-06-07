@@ -16,9 +16,10 @@
         android:text="Enter Registration Number"/>
 
     <EditText
+        android:id="@+id/reg_num"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="13/U/2398/DGK"/>
+        android:hint="12/U/2141/GIK/PS"/>
     <Button
         android:id="@+id/request"
         android:layout_width="match_parent"
@@ -43,13 +44,10 @@
             android:text="Bursar"/>
 
         <TextView
+            android:id="@+id/busar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="Paid: 650,000 Ugx"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Balance: 650,000 Ugx"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -59,6 +57,7 @@
             android:text="Dean of Students"/>
 
         <TextView
+            android:id="@+id/dos"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="Signed"/>
@@ -68,17 +67,26 @@
             android:layout_height="wrap_content"
             android:textColor="#000"
             android:textSize="20sp"
-            android:text="Academic Registra"/>
+            android:text="Dean Of Faculty"/>
 
         <TextView
+            android:id="@+id/dof"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="Not signed."/>
 
         <TextView
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#000"
+            android:textSize="20sp"
+            android:text="Accademic Registrar"/>
+
+        <TextView
+            android:id="@+id/ar"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Registration not complete"/>
+            android:text="Not signed."/>
 
     </LinearLayout>
 </LinearLayout>

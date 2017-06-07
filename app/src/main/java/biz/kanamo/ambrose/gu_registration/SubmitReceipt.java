@@ -1,5 +1,6 @@
 package biz.kanamo.ambrose.gu_registration;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -44,13 +45,18 @@ public class SubmitReceipt extends AppCompatActivity {
     Button tuition, general, guild, uploadReceipt;
     EditText reg_number;
 
-    public static final String RECEIPT_UPLOAD_URL = "http://ticketmybus.herokuapp.com/api/v1/booking";
+    public static final String RECEIPT_UPLOAD_URL = "http://gu-reg.herokuapp.com/api/v1/receipt";
 
+    ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_submit_receipt);
+
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Submitting receipts");
+
         initEntries();
         requestStoragePermission();
         tuition.setOnClickListener(new View.OnClickListener() {
@@ -87,14 +93,10 @@ public class SubmitReceipt extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (reg_number.getText().toString().length() > 0){
-
-                    String result = uploadReceiptsToServer();
-                    Toast.makeText(SubmitReceipt.this, result, Toast.LENGTH_SHORT).show();
-
+                    new OkHttpHandler().execute();
                 }else {
                     Toast.makeText(SubmitReceipt.this, "Registration Number Required with all the receipts.", Toast.LENGTH_SHORT).show();
                 }
-                new OkHttpHandler().execute("");
             }
         });
     }
@@ -108,11 +110,11 @@ public class SubmitReceipt extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
+
         if (id == R.id.action_show_register){
-            //Check ig their receipts has been verified then
-            //start the registration activity.
-            startActivity(new Intent(this, MainActivity.class));
+            startActivity(new Intent(this, RegStatus.class));
         }
+
         return super.onOptionsItemSelected(item);
     }
 
@@ -226,10 +228,11 @@ public class SubmitReceipt extends AppCompatActivity {
         try{
             String uuid = UUID.randomUUID().toString();
             return new MultipartUploadRequest(this, uuid, RECEIPT_UPLOAD_URL)
+                    .addParameter("reg_num", reg_number.getText().toString())
+                    .addParameter("is_approved", "0")
                     .addFileToUpload(tuition_path.getText().toString(), "tuition")
                     .addFileToUpload(general_path.getText().toString(), "general")
                     .addFileToUpload(guild_path.getText().toString(), "guild")
-                    .addParameter("reg_number", reg_number.getText().toString())
                     .setNotificationConfig(new UploadNotificationConfig())
                     .setMaxRetries(3)
                     .startUpload();
@@ -242,27 +245,23 @@ public class SubmitReceipt extends AppCompatActivity {
 
     public class OkHttpHandler extends AsyncTask<String, String, String> {
 
-        OkHttpClient client = new OkHttpClient();
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            progressDialog.show();
+        }
 
         @Override
         protected String doInBackground(String... params) {
-
-            Request request = new Request.Builder()
-                    .url("https://jsonplaceholder.typicode.com/posts")
-                    .build();
-            Response response ;
-            try {
-                response = client.newCall(request).execute();
-                return response.body().string();
-            }catch (Exception e){
-                e.printStackTrace();
-            }
-            return null;
+            return uploadReceiptsToServer();
         }
 
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
+            progressDialog.dismiss();
+            Toast.makeText(SubmitReceipt.this, "Check progress in notification menu, if failed, try again next time with faster internet", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(SubmitReceipt.this, MainActivity.class));
             Log.d("XYT", s);
         }
     }

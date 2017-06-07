@@ -231,6 +231,27 @@
                 android:hint="Mode of Attendance (Weekdays/Weekend)"
                 android:id="@+id/mode_of_attendance"/>
 
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Tuition Paid"
+                android:id="@+id/tuition_paid"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="General Charges Paid"
+                android:id="@+id/general_paid"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Guild Fees Paid"
+                android:id="@+id/guild_paid"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Total Paid"
+                android:id="@+id/total_payable"/>
+
             <Button
                 android:id="@+id/register"
                 android:layout_width="match_parent"
